@@ -1,6 +1,8 @@
 package com.jhontruse.wsr_task.service.impl;
 
 import com.jhontruse.wsr_task.model.entity.Task;
+import com.jhontruse.wsr_task.model.mapper.TaskMapper;
+import com.jhontruse.wsr_task.model.records.TaskResponse;
 import com.jhontruse.wsr_task.repository.ITaskRepository;
 import com.jhontruse.wsr_task.service.ITaskService;
 import lombok.RequiredArgsConstructor;
@@ -19,12 +21,16 @@ public class TaskService implements ITaskService {
     private final ITaskRepository taskRepository;
 
     @Override
-    public List<Task> findAll() {
-        log.info("Obteniendo todos los tasks");
-        List<Task> tasks = taskRepository.findAll();
-        if (tasks == null) {
-            return tasks;
+    public List<TaskResponse> findAll() {
+        log.info("TaskService - findAll ");
+        List<TaskResponse> tasksResponse = taskRepository.findAll().
+                stream().
+                map(TaskMapper::toResponseFind).
+                toList();
+        log.info("tasksResponse = {}", tasksResponse);
+        if (tasksResponse == null) {
+            return tasksResponse;
         }
-        return tasks;
+        return tasksResponse;
     }
 }

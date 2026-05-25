@@ -14,6 +14,8 @@ public final class AppConstants {
 
     public static final String STATUS = "status";
 
+    public static final String DURATION = "duration";
+
     private AppConstants() {
         throw new UnsupportedOperationException("Clase de constantes - no debe instanciarse");
     }

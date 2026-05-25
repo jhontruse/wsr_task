@@ -36,6 +36,7 @@ public class TraceIdFilter extends OncePerRequestFilter {
             MDC.put(AppConstants.ENDPOINT, request.getRequestURI());
             MDC.put(AppConstants.IP, getClientIp(request));
 
+
             // Retornar traceId al cliente
             response.setHeader(AppConstants.HEADER_TRACE_ID, traceId);
             log.info("Inicio request {} {}", request.getMethod(), request.getRequestURI());
@@ -45,8 +46,8 @@ public class TraceIdFilter extends OncePerRequestFilter {
             MDC.put(AppConstants.STATUS, String.valueOf(response.getStatus()));
         } finally {
             long duration = System.currentTimeMillis() - startTime;
+            MDC.put("duration", duration + "ms");
             log.info("Fin request - duración={}ms", duration);
-
             // MUY IMPORTANTE
             MDC.clear();
         }

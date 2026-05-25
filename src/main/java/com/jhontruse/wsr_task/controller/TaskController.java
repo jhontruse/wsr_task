@@ -1,6 +1,7 @@
 package com.jhontruse.wsr_task.controller;
 
 import com.jhontruse.wsr_task.model.entity.Task;
+import com.jhontruse.wsr_task.model.records.TaskResponse;
 import com.jhontruse.wsr_task.service.impl.TaskService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -26,8 +27,8 @@ public class TaskController {
 
     @Operation(summary = "Listar todos los tasks")
     @GetMapping("${server.servlet.context-path.task.fin.all}")
-    public ResponseEntity<List<Task>> findAll() {
-        log.debug("GET /menu/find/all");
+    public ResponseEntity<List<TaskResponse>> findAll() {
+        log.info("TaskController - findAll ");
         return ResponseEntity.ok(taskService.findAll());
     }
 

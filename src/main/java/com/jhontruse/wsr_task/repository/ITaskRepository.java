@@ -19,4 +19,6 @@ public interface ITaskRepository extends CrudRepository<Task, String>,
     @NullMarked
     List<Task> findAll();
 
+
+
 }
